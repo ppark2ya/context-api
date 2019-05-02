@@ -55,7 +55,7 @@ const getUnseen = notifications => {
 }
 
 const HeaderPresenter = () => {
-    const store = useContext(Store);
+    const { notifications } = useContext(Store);
     return (
         <Header>
             <Flex full justifyBetween alignCenter>
@@ -76,7 +76,7 @@ const HeaderPresenter = () => {
                                 {/* <Store.Consumer>
                                     {store => getUnseen(store.notifications)}
                                 </Store.Consumer> */}
-                                { getUnseen(store.notifications) }
+                                { getUnseen(notifications) }
                             </Number>
                         </HeaderIcon>
                     </Flex>

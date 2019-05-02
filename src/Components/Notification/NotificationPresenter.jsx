@@ -53,7 +53,7 @@ const Button = styled.button`
 `;
 
 const NotificationPresenter = ({ id, text, seen }) => {
-    const store = useContext(Store);
+    const { seeNotification, deleteNotification } = useContext(Store);
     return (
         <Notification seen={seen}>
             <Flex alignCenter justifyBetween>
@@ -84,14 +84,14 @@ const NotificationPresenter = ({ id, text, seen }) => {
                             <Button
                                 success
                                 seen={seen}
-                                onClick={() => store.seeNotification(id)}
+                                onClick={() => seeNotification(id)}
                             >
                                 <FontAwesome name='check' />
                             </Button>
                             <Button
                                 danger
                                 seen={seen}
-                                onClick={() => store.deleteNotification(id)}
+                                onClick={() => deleteNotification(id)}
                             >
                                 <FontAwesome name='check' />
                             </Button>

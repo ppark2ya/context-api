@@ -5,7 +5,7 @@ import Notification from 'Components/Notification';
 import Store from 'store';
 
 const AppPresenter = () => {
-    const store = useContext(Store);
+    const { notifications } = useContext(Store);
     
     return (
         <Fragment>
@@ -25,13 +25,13 @@ const AppPresenter = () => {
                     }}
                 </Store.Consumer> */}
                 {
-                    Object.keys(store.notifications).map(key => (
+                    Object.keys(notifications).map(key => (
                         <Notification
-                        key={store.notifications[key].id}
-                        id={store.notifications[key].id}
-                        text={store.notifications[key].text}
-                        seen={store.notifications[key].seen}
-                    />  
+                            key={notifications[key].id}
+                            id={notifications[key].id}
+                            text={notifications[key].text}
+                            seen={notifications[key].seen}
+                        />  
                     ))
                 }
             </Flex>

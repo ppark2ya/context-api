@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment, useContext } from 'react';
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Flex, { FlexItem } from "styled-flex-component";
@@ -52,37 +52,56 @@ const Button = styled.button`
     }
 `;
 
-const NotificationPresenter = ({ id, text, seen }) => (
-    <Notification seen={seen}>
-        <Flex alignCenter justifyBetween>
-            <Title>{text}</Title>
-            <FlexItem>
-                <Fragment>
-                    <Store.Consumer>
-                        {store => (
-                                <Fragment>
-                                    <Button
-                                        success
-                                        seen={seen}
-                                        onClick={() => store.seeNotification(id)}
-                                    >
-                                        <FontAwesome name='check' />
-                                    </Button>
-                                    <Button
-                                        danger
-                                        seen={seen}
-                                        onClick={() => store.deleteNotification(id)}
-                                    >
-                                        <FontAwesome name='check' />
-                                    </Button>
-                                </Fragment>
-                            )}
-                    </Store.Consumer>
-                </Fragment>
-            </FlexItem>
-        </Flex>
-    </Notification>
-);
+const NotificationPresenter = ({ id, text, seen }) => {
+    const store = useContext(Store);
+    return (
+        <Notification seen={seen}>
+            <Flex alignCenter justifyBetween>
+                <Title>{text}</Title>
+                <FlexItem>
+                    <Fragment>
+                        {/* <Store.Consumer>
+                            {store => (
+                                    <Fragment>
+                                        <Button
+                                            success
+                                            seen={seen}
+                                            onClick={() => store.seeNotification(id)}
+                                        >
+                                            <FontAwesome name='check' />
+                                        </Button>
+                                        <Button
+                                            danger
+                                            seen={seen}
+                                            onClick={() => store.deleteNotification(id)}
+                                        >
+                                            <FontAwesome name='check' />
+                                        </Button>
+                                    </Fragment>
+                                )}
+                        </Store.Consumer> */}
+                        <Fragment>
+                            <Button
+                                success
+                                seen={seen}
+                                onClick={() => store.seeNotification(id)}
+                            >
+                                <FontAwesome name='check' />
+                            </Button>
+                            <Button
+                                danger
+                                seen={seen}
+                                onClick={() => store.deleteNotification(id)}
+                            >
+                                <FontAwesome name='check' />
+                            </Button>
+                        </Fragment>
+                    </Fragment>
+                </FlexItem>
+            </Flex>
+        </Notification>
+    );
+}
 
 NotificationPresenter.propTypes = {
     text: PropTypes.string.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Flex, { FlexItem } from 'styled-flex-component';
 import FontAwesom from 'react-fontawesome';
@@ -55,6 +55,7 @@ const getUnseen = notifications => {
 }
 
 const HeaderPresenter = () => {
+    const store = useContext(Store);
     return (
         <Header>
             <Flex full justifyBetween alignCenter>
@@ -72,9 +73,10 @@ const HeaderPresenter = () => {
                         <HeaderIcon>
                             <FontAwesom name="bell" />
                             <Number>
-                                <Store.Consumer>
+                                {/* <Store.Consumer>
                                     {store => getUnseen(store.notifications)}
-                                </Store.Consumer>
+                                </Store.Consumer> */}
+                                { getUnseen(store.notifications) }
                             </Number>
                         </HeaderIcon>
                     </Flex>
